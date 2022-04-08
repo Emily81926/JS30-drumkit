@@ -9,7 +9,13 @@ function makeTheBeat(keycode) {
 document.addEventListener('keydown', (e) => {
   //當按按鍵的時候可以取得該keycode
   const code = e.keyCode //為什麼keycode會被劃掉？
+  //當按按鍵的時候，按鍵本身會有不同的視覺效果
+  const key = document.querySelector(`.key[data-key="${code}"]`)
+  key.classList.add('playing')
   //當按鍵的keycode跟音擋的keycode相同時，播放音樂
   makeTheBeat(code)
 })
+
+
+//當播放鼓聲後，鼓聲會停止播放
 
