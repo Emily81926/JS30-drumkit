@@ -6,6 +6,13 @@ function makeTheBeat(keycode) {
   audio.play()
 }
 
+//結束鼓聲的循環
+function removeTransition(e) {
+  if (e.propertyName !== 'transform') return
+  e.target.classList.remove('playing')
+}
+
+//當按下按鍵時，會呈現不同視覺效果，且播放鼓聲
 document.addEventListener('keydown', (e) => {
   //當按按鍵的時候可以取得該keycode
   const code = e.keyCode //為什麼keycode會被劃掉？
@@ -15,4 +22,8 @@ document.addEventListener('keydown', (e) => {
   //當按鍵的keycode跟音擋的keycode相同時，播放音樂
   makeTheBeat(code)
 })
+
+//當鼓聲播放後，讓該視覺效果結束
+const keys = document.querySelectorAll('.keys')
+keys.forEach(key => key.addEventListener('transitionend', removeTransition))
 
